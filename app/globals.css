@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  
+  /* Custom colors */
+  --neon-cyan: 180, 100%, 50%;     /* #00F5FF */
+  --neon-magenta: 300, 100%, 50%;  /* #FF00E5 */
+  --dark-bg: 240, 10%, 3.9%;       /* #09090b for OLED */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--dark-bg);
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 5% 10%;
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 270 80% 50%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 180 100% 50%;
+    --chart-1: 180 100% 50%;
+    --chart-2: 240 100% 50%;
+    --chart-3: 270 100% 50%;
+    --chart-4: 300 100% 50%;
+    --chart-5: 330 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(to bottom, 
+      rgb(var(--dark-bg)), 
+      rgb(var(--dark-bg)));
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.7), 
+                 0 0 20px rgba(0, 245, 255, 0.5), 
+                 0 0 30px rgba(0, 245, 255, 0.3);
+  }
+  
+  .text-glow-magenta {
+    text-shadow: 0 0 10px rgba(255, 0, 229, 0.7), 
+                 0 0 20px rgba(255, 0, 229, 0.5), 
+                 0 0 30px rgba(255, 0, 229, 0.3);
+  }
+  
+  .neon-border {
+    @apply border border-transparent;
+    background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                linear-gradient(to right, hsl(var(--neon-cyan)), hsl(var(--neon-magenta))) border-box;
+  }
+  
+  .glass-effect {
+    @apply bg-black/20 backdrop-blur-lg;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .gradient-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(to right, hsl(var(--neon-cyan)), hsl(var(--neon-magenta)));
+  }
+}
